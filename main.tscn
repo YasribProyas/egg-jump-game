@@ -1,0 +1,313 @@
+[gd_scene load_steps=12 format=3 uid="uid://man6n0tg48mw"]
+
+[ext_resource type="Texture2D" uid="uid://ommw8grnmep0" path="res://assets/ico_nobg.png" id="1_2gjeg"]
+[ext_resource type="Script" path="res://scripts/mainMenu.gd" id="1_a0c8l"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_qce6m"]
+[ext_resource type="Texture2D" uid="uid://cwl05topk8k3q" path="res://assets/UI/yellow_button.png" id="2_la1kf"]
+[ext_resource type="Texture2D" uid="uid://2rkimnjkj12r" path="res://assets/UI/Pause button.png" id="3_65cyu"]
+[ext_resource type="Texture2D" uid="uid://clabkyxdxbdx" path="res://assets/UI/yellow_button_pressed.png" id="3_3187f"]
+[ext_resource type="Script" path="res://scripts/Game.gd" id="6_5seji"]
+[ext_resource type="Script" path="res://scripts/pauseMenu.gd" id="8_h6b0g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oacvw"]
+font_size = 56
+font_color = Color(0.447059, 0.168627, 0.0235294, 1)
+outline_size = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_s18pa"]
+font_size = 48
+font_color = Color(0.447059, 0.168627, 0.0235294, 1)
+outline_size = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_ukctk"]
+font_size = 120
+font_color = Color(0.447059, 0.168627, 0.0235294, 1)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_qce6m")
+
+[node name="Game" type="Node2D" parent="."]
+script = ExtResource("6_5seji")
+
+[node name="ColorRect" type="ColorRect" parent="Game"]
+offset_right = 1080.0
+offset_bottom = 2280.0
+color = Color(0.984314, 0.941176, 0.360784, 1)
+
+[node name="baskets" type="Node2D" parent="Game"]
+
+[node name="HUD" type="Control" parent="Game"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1080.0
+offset_bottom = 2280.0
+
+[node name="Score" type="Label" parent="Game/HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_right = 512.0
+offset_bottom = 115.0
+grow_horizontal = 2
+text = "0
+"
+label_settings = SubResource("LabelSettings_oacvw")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="pauseButton" type="TextureButton" parent="Game/HUD"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 93.0
+offset_bottom = 93.0
+texture_normal = ExtResource("3_65cyu")
+stretch_mode = 3
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Game"]
+position = Vector2(542.5, 2304.5)
+scale = Vector2(53.85, 18.85)
+
+[node name="Menu" type="Control" parent="."]
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1080.0
+offset_bottom = 2280.0
+
+[node name="ColorRect" type="ColorRect" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.356863, 0.898039, 0.929412, 1)
+
+[node name="mainMenu" type="Control" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a0c8l")
+
+[node name="Icon" type="TextureRect" parent="Menu/mainMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 168.0
+offset_right = 400.0
+offset_bottom = 968.0
+grow_horizontal = 2
+texture = ExtResource("1_2gjeg")
+
+[node name="Buttons" type="Control" parent="Menu/mainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_right = -320.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="startButton" type="TextureButton" parent="Menu/mainMenu/Buttons"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 687.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_la1kf")
+texture_pressed = ExtResource("3_3187f")
+stretch_mode = 0
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Menu/mainMenu/Buttons/startButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start"
+label_settings = SubResource("LabelSettings_s18pa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="optionsButton" type="TextureButton" parent="Menu/mainMenu/Buttons"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 125.0
+offset_right = 687.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_la1kf")
+texture_pressed = ExtResource("3_3187f")
+stretch_mode = 0
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Menu/mainMenu/Buttons/optionsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Options
+"
+label_settings = SubResource("LabelSettings_s18pa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quitButton" type="TextureButton" parent="Menu/mainMenu/Buttons"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 250.0
+offset_right = 687.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_la1kf")
+texture_pressed = ExtResource("3_3187f")
+stretch_mode = 0
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Menu/mainMenu/Buttons/quitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quiet
+"
+label_settings = SubResource("LabelSettings_s18pa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="pauseMenu" type="Control" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_h6b0g")
+
+[node name="Label" type="Label" parent="Menu/pauseMenu"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -474.0
+offset_bottom = -322.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Paused"
+label_settings = SubResource("LabelSettings_ukctk")
+horizontal_alignment = 1
+
+[node name="score" type="Label" parent="Menu/pauseMenu"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -207.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_ukctk")
+horizontal_alignment = 1
+
+[node name="resumeButton" type="TextureButton" parent="Menu/pauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = 133.0
+offset_right = 347.0
+offset_bottom = 233.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_la1kf")
+texture_pressed = ExtResource("3_3187f")
+stretch_mode = 0
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Menu/pauseMenu/resumeButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Resume
+"
+label_settings = SubResource("LabelSettings_s18pa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mainMenuButton" type="TextureButton" parent="Menu/pauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = 258.0
+offset_right = 347.0
+offset_bottom = 358.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_la1kf")
+texture_pressed = ExtResource("3_3187f")
+stretch_mode = 0
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Menu/pauseMenu/mainMenuButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Main Menu"
+label_settings = SubResource("LabelSettings_s18pa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Game/HUD/pauseButton" to="Game" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="Menu/mainMenu/Buttons/startButton" to="Menu/mainMenu" method="_on_start_button_pressed"]
+[connection signal="pressed" from="Menu/mainMenu/Buttons/quitButton" to="Menu/mainMenu" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Menu/pauseMenu/resumeButton" to="Menu/pauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Menu/pauseMenu/mainMenuButton" to="Menu/pauseMenu" method="_on_main_menu_button_pressed"]

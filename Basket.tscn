@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://dim7jjympp1hh"]
+
+[ext_resource type="Script" path="res://scripts/basket.gd" id="1_5p5ci"]
+[ext_resource type="Texture2D" uid="uid://d38ogsftdygx4" path="res://assets/eggs/Basket.png" id="2_cupvs"]
+
+[sub_resource type="Curve2D" id="Curve2D_e4v7h"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1080, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7xy0i"]
+a = Vector2(-50, 0)
+b = Vector2(50, 0)
+
+[node name="Basket" type="Node2D"]
+script = ExtResource("1_5p5ci")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-150, -125, 300, 1)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_e4v7h")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+scale = Vector2(0.5, 0.5)
+rotates = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
+texture = ExtResource("2_cupvs")
+
+[node name="EggSlot" type="Node2D" parent="Path2D/PathFollow2D"]
+scale = Vector2(2, 2)
+
+[node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D/EggSlot"]
+position = Vector2(0, 50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/EggSlot/Area2D"]
+shape = SubResource("SegmentShape2D_7xy0i")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="Path2D/PathFollow2D/EggSlot/Area2D" to="." method="_on_area_2d_area_entered"]
